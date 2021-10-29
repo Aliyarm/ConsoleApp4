@@ -1,50 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace ConsoleApp4
+namespace LB3_IT
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int[] array = new int[23];
-            Random rand = new();
-            for (int i = 0; i < array.Length; i++)
-                array[i] = rand.Next();
+            //int n = Convert.ToInt32(Console.ReadLine());           
+            //int[] array = new int[n];
 
-            int[] array = new List(i); // Преобразование в список
-            array.RemoveAt(n); // Удаление элемента
-
-            int b = array.ToArray(); // Преобразование в массив
-
-            //int[] array = new int[] { 1, 2, 3, 4, 5 };
-
-            //if (!int.TryParse(Console.ReadLine(), out int index))
-            //{
-            //    Console.WriteLine("Некорректный индекс");
-            //    return;
-            //}
-
-            //if (index < 0 || index >= array.Length)
-            //{
-            //    Console.WriteLine("Индекс за пределами массива");
-            //    return;
-            //}
-
-            //// вариант удаления выбранного элемента с созданием нового массива
-            //int[] newArray = new int[array.Length - 1];
+            int[] array = new int[10] { -1, -2, -3, 4, 5, 6, -7, 8, 9, -10 };
+            //Random rand = new();
             //for (int i = 0; i < array.Length; i++)
             //{
-            //    if (i < index)
-            //    {
-            //        newArray[i] = array[i];
-            //    }
-            //    else if (i > index)
-            //    {
-            //        newArray[i - 1] = array[i];
-            //    }
-            //    Console.WriteLine(newArray);
+            //    array[i] = rand.Next(-100, 100);
+            //    Console.Write(array[i] + " ");
             //}
+
+            bool sign = array[0] > 0;
+            //если сигн тру, ищем отрицательное, если сигн фолс то ищем положительное
+            for (int i = 0; i < array.Length - 1; i++)
+            {
+                int j = i + 1;
+                if (array[i] == 0)
+                {
+                    //sign = !sign;
+                }
+                else if (sign == true)
+                {
+                    if (array[j] > 0)
+                    {
+                        array[j] = 0;
+                    }
+                }
+                else if (sign == false)
+                {
+                    if (array[j] < 0)
+                    {
+                        array[j] = 0;
+                    }
+                }
+                sign = !sign;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Вывод отсортированного массива");
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.Write(array[i] + " ");
+            }
+            Console.ReadLine();
+            //Console.WriteLine(newArray);
         }
     }
 }
